@@ -4,7 +4,7 @@ public class Defeito {
     private String nome;
     private String descricao;
 
-    public Defeito(String nome, String descricao){
+    public Defeito(String nome){
         this.nome = nome;
         this.descricao = descricao;
     }
