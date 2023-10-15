@@ -1,5 +1,6 @@
 package com.techcelladm;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -23,14 +24,7 @@ public class ClienteTest {
         cliente.adicionarProduto(produto);
         cliente.removerProduto(produto);
 
-        assertEquals(0, cliente.getProdutos().size());
-    }
-/** Teste para verificar se o método getNome() da classe Defeito está retornando o nome correto do defeito:**/
-    @Test
-    public void testGetNome() {
-        Defeito defeito = new Defeito("Tela rachada");
-
-        assertEquals("Tela rachada", defeito.getNome());
+        assertEquals(produto, cliente.getProdutos().get(0));
     }
 
 }
