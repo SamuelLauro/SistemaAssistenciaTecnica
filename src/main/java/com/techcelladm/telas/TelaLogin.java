@@ -4,6 +4,12 @@
  */
 package com.techcelladm.telas;
 
+import com.techcelladm.dal.ConexaoDAO;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
+
 /**
  *
  * @author GAME
@@ -31,6 +37,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TechCell - Login");
@@ -53,14 +60,19 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        lblStatus.setText("status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLogin)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,9 +97,14 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLogin)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblStatus)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,7 +118,24 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    String usuario = jTextField1.getText();
+    String senha = new String(jPasswordField1.getPassword());
 
+    // Coloque aqui o código de verificação de login
+    ConexaoDAO conexaoDAO = new ConexaoDAO();
+    Connection conn = conexaoDAO.conectaBD();
+    
+    if (conn != null) {
+        // Seu código de verificação de login aqui
+        // ...
+
+    } else {
+        lblStatus.setText("Erro na conexão com o banco de dados");
+    }
+}
+
+    
     /**
      * @param args the command line arguments
      */
@@ -143,5 +177,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }
