@@ -27,11 +27,11 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btnOrdem" max="32767" attributes="0"/>
-                      <Component id="btnCadPro" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnCadCli" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnOrdem" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnCadPro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnCadCli" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnGastos" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnVendas" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="365" max="32767" attributes="0"/>
           </Group>
@@ -44,11 +44,15 @@
               <Component id="jLabel1" min="-2" pref="74" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCadCli" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnCadPro" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnOrdem" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace pref="144" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnGastos" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnVendas" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace pref="120" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,6 +87,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdemActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGastos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CONTROLE DE GASTOS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGastosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVendas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CONTROLE DE VENDAS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVendasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

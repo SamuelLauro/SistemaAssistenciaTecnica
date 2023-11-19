@@ -1,9 +1,10 @@
 package com.techcelladm;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import com.techcelladm.telas.TelaLogin;
+
+public class App {
+    public static void main(String[] args) {
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
     }
 }

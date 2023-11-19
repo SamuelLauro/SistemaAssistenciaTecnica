@@ -12,7 +12,7 @@ public class ConexaoDAO {
     public Connection conectaBD () {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/dbinfox?user=root&password=4776";
+            String url = "jdbc:mysql://localhost:3306/dbinfox?user=techcell&password=Senha1234.";
             conn = DriverManager.getConnection(url);
                     
         } catch (SQLException erro) {

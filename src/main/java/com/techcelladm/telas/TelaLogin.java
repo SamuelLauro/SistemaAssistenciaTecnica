@@ -53,6 +53,11 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,22 +123,23 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {                                          
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     String usuario = jTextField1.getText();
     String senha = new String(jPasswordField1.getPassword());
 
-    // Coloque aqui o código de verificação de login
-    ConexaoDAO conexaoDAO = new ConexaoDAO();
-    Connection conn = conexaoDAO.conectaBD();
-    
-    if (conn != null) {
-        // Seu código de verificação de login aqui
-        // ...
+    // Aqui simulamos um usuário e senha válidos
+    String usuarioValido = "admin";
+    String senhaValida = "senha123";
 
+    if (usuario.equals(usuarioValido) && senha.equals(senhaValida)) {
+        this.dispose();
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
     } else {
-        lblStatus.setText("Erro na conexão com o banco de dados");
+        lblStatus.setText("Usuário ou senha inválidos");
     }
-}
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     
     /**
