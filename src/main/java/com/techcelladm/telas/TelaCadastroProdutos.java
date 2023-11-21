@@ -1,5 +1,8 @@
 package com.techcelladm.telas;
 
+import com.techcelladm.dal.ConexaoDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.*;
 
 public class TelaCadastroProdutos extends javax.swing.JFrame {
@@ -127,10 +130,54 @@ public class TelaCadastroProdutos extends javax.swing.JFrame {
     }
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {
-        // Lógica para salvar os dados do produto no banco de dados
-        // Aqui você pode pegar os valores dos campos (txtNome.getText(), etc.)
-        // e salvar no banco de dados.
-        // Se precisar de ajuda com a conexão com o banco ou lógica de salvamento, me avise.
+        // Recuperando os valores dos campos
+        String nome = txtNome.getText();
+        String precoStr = txtPreco.getText();
+        String estoqueStr = txtEstoque.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String descricao = txtDescricao.getText();
+
+        // Validando e convertendo os valores
+        if (nome.isEmpty() || precoStr.isEmpty() || estoqueStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        double preco = Double.parseDouble(precoStr);
+        int estoque = Integer.parseInt(estoqueStr);
+
+        // Conexão com o banco e inserção dos dados
+        ConexaoDAO conexaoDAO = new ConexaoDAO();
+        Connection conn = conexaoDAO.conectaBD();
+
+        if (conn != null) {
+            try {
+                String query = "INSERT INTO tabela_produtos (nome, preco, quantidade, marca, modelo, descricao) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = conn.prepareStatement(query);
+                statement.setString(1, nome);
+                statement.setDouble(2, preco);
+                statement.setInt(3, estoque);
+                statement.setString(4, marca);
+                statement.setString(5, modelo);
+                statement.setString(6, descricao);
+
+                int insertedRows = statement.executeUpdate();
+
+                if (insertedRows > 0) {
+                    JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+                    dispose(); // Fecha a janela após o cadastro
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao cadastrar o produto.");
+                }
+
+                statement.close();
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar o produto no banco de dados.");
+            }
+        }
     }
 
     public static void main(String args[]) {

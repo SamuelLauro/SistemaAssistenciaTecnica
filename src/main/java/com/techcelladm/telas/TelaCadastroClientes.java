@@ -1,114 +1,151 @@
 package com.techcelladm.telas;
 
+import com.techcelladm.dal.ConexaoDAO;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
-public class TelaCadastroClientes extends javax.swing.JFrame {
+public class TelaCadastroClientes extends JFrame {
 
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelTelefone;
-    private javax.swing.JLabel jLabelEndereco;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTelefone;
-    private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtEmail;
+    private JLabel lblNome;
+    private JLabel lblTelefone;
+    private JLabel lblEndereco;
+    private JLabel lblEmail;
+    private JTextField txtNome;
+    private JTextField txtTelefone;
+    private JTextField txtEndereco;
+    private JTextField txtEmail;
+    private JButton btnCadastrar;
 
     public TelaCadastroClientes() {
         initComponents();
     }
 
     private void initComponents() {
-        jLabelNome = new javax.swing.JLabel();
-        jLabelTelefone = new javax.swing.JLabel();
-        jLabelEndereco = new javax.swing.JLabel();
-        jLabelEmail = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
-        txtEndereco = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
+        lblNome = new JLabel("Nome:");
+        lblTelefone = new JLabel("Telefone:");
+        lblEndereco = new JLabel("Endereço:");
+        lblEmail = new JLabel("Email:");
+        txtNome = new JTextField();
+        txtTelefone = new JTextField();
+        txtEndereco = new JTextField();
+        txtEmail = new JTextField();
+        btnCadastrar = new JButton("Cadastrar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
 
-        jLabelNome.setText("Nome:");
-
-        jLabelTelefone.setText("Telefone:");
-
-        jLabelEndereco.setText("Endereço:");
-
-        jLabelEmail.setText("E-mail:");
-
-        btnSalvar.setText("Salvar");
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvar)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNome)
-                            .addComponent(jLabelTelefone)
-                            .addComponent(jLabelEndereco)
-                            .addComponent(jLabelEmail))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome)
+                            .addComponent(lblTelefone)
+                            .addComponent(lblEndereco)
+                            .addComponent(lblEmail))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome)
                             .addComponent(txtTelefone)
                             .addComponent(txtEndereco)
-                            .addComponent(txtEmail))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(txtEmail)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTelefone)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelEndereco)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnSalvar)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefone)
+                    .addComponent(txtTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEndereco)
+                    .addComponent(txtEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadastrar)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
-    }
+        setSize(400, 300);
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {
-        // Lógica para salvar os dados do cliente no banco de dados
-        // Aqui você pode pegar os valores dos campos (txtNome.getText(), etc.)
-        // e salvar no banco de dados.
-        // Se precisar de ajuda com a conexão com o banco ou lógica de salvamento, me avise.
-    }
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastroClientes().setVisible(true);
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cadastrarCliente();
             }
         });
+    }
+
+    private void cadastrarCliente() {
+    // Recupera os valores dos campos de texto
+    String nome = txtNome.getText();
+    String telefone = txtTelefone.getText();
+    String endereco = txtEndereco.getText();
+    String email = txtEmail.getText();
+
+    // Estabelece a conexão com o banco de dados
+    ConexaoDAO conexaoDAO = new ConexaoDAO();
+    Connection conn = conexaoDAO.conectaBD();
+
+    if (conn != null) {
+        try {
+            // Prepara a consulta SQL para inserir os dados do cliente
+            String query = "INSERT INTO tabela_clientes (nome, telefone, endereco, email) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, nome);
+            statement.setString(2, telefone);
+            statement.setString(3, endereco);
+            statement.setString(4, email);
+
+            // Executa a consulta para inserir os dados
+            int linhasAfetadas = statement.executeUpdate();
+            if (linhasAfetadas > 0) {
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                // Limpa os campos após o cadastro
+                limparCampos();
+                this.dispose(); // Fecha a tela após o cadastro
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar o cliente.");
+            }
+
+            statement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar o cliente.");
+        }
+    }
+}
+
+private void limparCampos() {
+    txtNome.setText("");
+    txtTelefone.setText("");
+    txtEndereco.setText("");
+    txtEmail.setText("");
+}
+
+    private void exibirClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

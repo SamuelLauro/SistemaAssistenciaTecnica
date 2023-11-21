@@ -76,7 +76,7 @@
                       <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,9 +111,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStatus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="status"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
